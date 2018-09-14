@@ -11,7 +11,10 @@
     1.屏幕适配，有几处地方显示不合理
     2.数据源（迟些自己编写）
     3.联动表（物品分类、食品分类）
-    4.先弄这些
+    4.购物车
+    5.地址
+    6.支付
+    7.查询
  */
 
 #import "DMHomeViewController.h"
@@ -186,7 +189,7 @@ static NSString *const DMAPPKEY = @"fd9d3f176feca12f6320a5272bab14a0";
 // 个人认为：collectionView的边距 -- 上、左、下、右
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     
-    return UIEdgeInsetsMake(5, 5, 5, 5);// 上.左.下.右
+    return UIEdgeInsetsMake(10, 15, 10, 15);// 上.左.下.右
 }
 
 // sectionHeader、 sectionFooter
@@ -195,9 +198,9 @@ static NSString *const DMAPPKEY = @"fd9d3f176feca12f6320a5272bab14a0";
     UICollectionReusableView *headerView;
     if (indexPath.section == 0) {
         headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerID forIndexPath:indexPath];
-        if (headerView == nil) {
-            headerView = [[UICollectionReusableView alloc] init];
-        }
+//        if (headerView == nil) {
+//            headerView = [[UICollectionReusableView alloc] init];
+//        }
         [headerView addSubview:self.rotateView];
     }else {
         headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerID forIndexPath:indexPath];
@@ -254,13 +257,13 @@ static NSString *const DMAPPKEY = @"fd9d3f176feca12f6320a5272bab14a0";
 #pragma mark - UICollectionViewDelegate、UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
 
-    return 2;
+    return 4;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
 
     if (section == 0) {
-        return 0;
+        return 5;
     } else {
         return 11;
     }
